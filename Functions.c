@@ -1,20 +1,20 @@
 #include "main.h"
+
 /**
  * _putchar - write a program that print a putchar function.
  * @c: a character to print
  * Return: On success 1.
- *         On error, -1 is returned.
+ * on error, -1 is returned.
  */
-
 int _putchar(char c)
 {
 return (write(1, &c, 1));
 }
 /**
- * handle_string: a function used for string handling
+ * handle_string - a function used for string handling
  * @str: type char
- * Description: handle_string is a function for strin handling
- * Return: number of caracter
+ * Description: This function handles and prints a string
+ * Return: The number of characters in the string.
  */
 int handle_string(char *str)
 {
@@ -22,11 +22,11 @@ int i = 0;
 if (str == NULL)
 {
 handle_string("(null)");
-return;
+return (0);
 }
 while (str[i])
 {
-putchar(str[i]);
+_putchar(str[i]);
 i++;
 }
 return (i);
