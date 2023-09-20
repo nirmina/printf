@@ -18,18 +18,18 @@ return (write(1, &c, 1));
  */
 int handle_string(char *str)
 {
-int i = 0;
-if (str == NULL)
-{
-handle_string("(null)");
-return (0);
-}
-while (str[i])
-{
-_putchar(str[i]);
-i++;
-}
-return (i);
+	int i = 0;
+	if (str == NULL)
+	{
+		handle_string("(null)");
+		return (0);
+	}
+	while (str[i])
+	{
+		_putchar(str[i]);
+		i++;
+	}
+	return (i);
 }
 /**
  * handle_int - prints integer
