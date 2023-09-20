@@ -66,3 +66,18 @@ count++;
 }
 return (count);
 }
+/**
+ * handle_unknown - Handle unknown format specifiers in _printf
+ * @format: Pointer to the format string being processed
+ * Return: The number of characters printed for the unknown specifier
+ */
+int handle_unknown(const char **format)
+{
+int count = 0;
+_putchar('%');
+_putchar(**format);
+count += 2;
+(*format)++;
+return (count);
+}
+

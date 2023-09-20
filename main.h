@@ -7,4 +7,5 @@ int _printf(const char *format, ...);
 int handle_string(char *str);
 int _putchar(char c);
 int handle_int(int num);
+int handle_unknown(const char **format);
 #endif
