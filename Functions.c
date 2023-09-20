@@ -1,35 +1,31 @@
 #include "main.h"
-
 /**
- * _putchar - write a program that print a putchar function.
- * @c: a character to print
- * Return: On success 1.
- * on error, -1 is returned.
+ * _putchar - Write a character to stdout
+ * @c: The character to write
+ * Return: On success, 1.
+ * On error, -1
  */
 int _putchar(char c)
 {
 return (write(1, &c, 1));
 }
 /**
- * handle_string - a function used for string handling
- * @str: type char
- * Description: This function handles and prints a string
- * Return: The number of characters in the string.
+ * handle_string - Print a string
+ * @str: String to print
+ * Return: Number of characters printed (excluding null byte)
  */
 int handle_string(char *str)
 {
-int i = 0;
+int count = 0;
 if (str == NULL)
+str = "(null)";
+while (*str)
 {
-handle_string("(null)");
-return (0);
+_putchar(*str);
+str++;
+count++;
 }
-while (str[i])
-{
-_putchar(str[i]);
-i++;
-}
-return (i);
+return (count);
 }
 /**
  * handle_int - prints integer
@@ -39,36 +35,34 @@ return (i);
  */
 int handle_int(int num)
 {
-	int count = 0;
-	int digit;
-
-	if (num < 0)
-	{
-		_putchar('-');
-		count++;
-		num = -num;
-	}
-	if (num == 0)
-	{
-		_putchar('0');
-		count++;
-	}
-	else
-	{
-		int rev = 0; /* reverse the num */
-
-		while (num > 0)
-		{
-			digit = num % 10;
-			rev = rev * 10 + digit;
-			num /= 10;
-		}
-			while (rev > 0)
-		{
-			_putchar(rev % 10 + '0');
-			rev /= 10;
-			count++;
-		}
-	}
-	return (count);
+int count = 0;
+int digit;
+if (num < 0)
+{
+_putchar('-');
+count++;
+num = -num;
+}
+if (num == 0)
+{
+_putchar('0');
+count++;
+}
+else
+{
+int rev = 0; /* reverse the num */
+while (num > 0)
+{
+digit = num % 10;
+rev = rev * 10 + digit;
+num /= 10;
+}
+while (rev > 0)
+{
+_putchar(rev % 10 + '0');
+rev /= 10;
+count++;
+}
+}
+return (count);
 }

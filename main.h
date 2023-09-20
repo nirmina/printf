@@ -3,7 +3,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
-int _putchar(char c);
-int handle_string(char *str);
 int _printf(const char *format, ...);
+int handle_string(char *str);
+int _putchar(char c);
+int handle_int(int num);
 #endif
