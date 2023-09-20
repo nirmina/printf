@@ -31,3 +31,44 @@ i++;
 }
 return (i);
 }
+/**
+ * handle_int - prints integer
+ * @num: the integer to be printed
+ *
+ * Return: the number of characters printed
+ */
+int handle_int(int num)
+{
+	int count = 0;
+	int digit;
+
+	if (num < 0)
+	{
+		_putchar('-');
+		count++;
+		num = -num;
+	}
+	if (num == 0)
+	{
+		_putchar('0');
+		count++;
+	}
+	else
+	{
+		int rev = 0; /* reverse the num */
+
+		while (num > 0)
+		{
+			digit = num % 10;
+			rev = rev * 10 + digit;
+			num /= 10;
+		}
+			while (rev > 0)
+		{
+			_putchar(rev % 10 + '0');
+			rev /= 10;
+			count++;
+		}
+	}
+	return (count);
+}
