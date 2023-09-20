@@ -1,10 +1,8 @@
 #include "main.h"
 /**
  * _printf - Custom printf function
- * @format: The format string
- * Description: _printf is a custom printf function that supports
- * the '%c' and '%s' format specifiers.
- * Return: The number of characters printed, or -1 on failure.
+ * @format: Format string
+ * Return: Number of characters printed (excluding null byte)
  */
 int _printf(const char *format, ...)
 {
