@@ -20,8 +20,7 @@ int handle_string(char *str)
 
 	if (str == NULL)
 	{
-		handle_string("(null)");
-		return (0);
+		str = "(null)";
 	}
 	while (str[i])
 	{
