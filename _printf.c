@@ -8,6 +8,7 @@ int _printf(const char *format, ...)
 {
 	int count = 0;
 	va_list args;
+	char buffer[20];
 
 	va_start(args, format);
 	if (format == NULL)
@@ -18,23 +19,16 @@ int _printf(const char *format, ...)
 		{
 			format++;
 			if (*format == 'c')
-			count += _putchar(va_arg(args, int));
+				count += _putchar(va_arg(args, int));
 			else if (*format == 's')
-			count += handle_string(va_arg(args, char *));
+				count += handle_string(va_arg(args, char *));
 			else if (*format == 'i' || *format == 'd')
-			count += handle_int(va_arg(args, int));
-			else if (*format == '%')
-			count += _putchar('%');
-			else
 			{
-			count += _putchar('%');
-			count += _putchar(*format);
+				_sprintf(buffer, "%d", va_arg(args, int));
+				count += handle_string(buffer);
 			}
-		}
-		else if (*format == '%' && format[1] != '\0')
-		{
-			count += _putchar('%');
-			break;
+			else if (*format == '%')
+				count += _putchar('%');
 		}
 		else
 		count += _putchar(*format);

@@ -30,43 +30,53 @@ int handle_string(char *str)
 	return (i);
 }
 /**
- * handle_int - prints integer
- * @num: the integer to be printed
- *
+ * _sprintf - prints integer
+ * @buffer: the stored integer to be printed
+ * @format: the format
+ * @num: the va_int
  * Return: the number of characters printed
  */
-int handle_int(int num)
+int _sprintf(char *buffer, const char *format, int num)
 {
-int count = 0;
-int digit;
-if (num < 0)
-{
-_putchar('-');
-count++;
-num = -num;
-}
-if (num == 0)
-{
-_putchar('0');
-count++;
-}
-else
-{
-int rev = 0; /* reverse the num */
-while (num > 0)
-{
-digit = num % 10;
-rev = rev * 10 + digit;
-num /= 10;
-}
-while (rev > 0)
-{
-_putchar(rev % 10 + '0');
-rev /= 10;
-count++;
-}
-}
-return (count);
+	int count = 0;
+	int divisor;
+	int temp;
+	int digits = 0;
+	int i;
+
+	while (*format)
+	{
+		if (*format == '%' && format[1] == 'd')
+		{
+			format++;
+			format++;
+			temp = num;
+			while (temp != 0)
+				temp /= 10;
+				digits++;
+			if (num < 0)
+				buffer[count++] = '-';
+				num = -num;
+			divisor = 1;
+			for (i = 1; i < digits; i++)
+			{
+				divisor *= 10;
+			}
+			while (divisor > 0)
+			{
+				int digit = num / divisor;
+
+				buffer[count++] = digit + '0';
+				num %= divisor;
+				divisor /= 10;
+			}
+		}
+		else
+			buffer[count++] = *format;
+			format++;
+	}
+	buffer[count] = '\0';
+	return (count);
 }
 /**
  * handle_unknown - Handle unknown format specifiers in _printf
