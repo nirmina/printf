@@ -93,4 +93,3 @@ count += 2;
 (*format)++;
 return (count);
 }
-
