@@ -39,10 +39,7 @@ int handle_string(char *str)
 int _sprintf(char *buffer, const char *format, int num)
 {
 	int count = 0;
-	int divisor;
-	int temp;
-	int digits = 0;
-	int i;
+	int temp, digits, divisor, digit, i;
 
 	while (*format)
 	{
@@ -51,12 +48,17 @@ int _sprintf(char *buffer, const char *format, int num)
 			format++;
 			format++;
 			temp = num;
+			digits = 0;
 			while (temp != 0)
+			{
 				temp /= 10;
 				digits++;
+			}
 			if (num < 0)
+			{
 				buffer[count++] = '-';
 				num = -num;
+			}
 			divisor = 1;
 			for (i = 1; i < digits; i++)
 			{
@@ -64,16 +66,17 @@ int _sprintf(char *buffer, const char *format, int num)
 			}
 			while (divisor > 0)
 			{
-				int digit = num / divisor;
-
+				digit = num / divisor;
 				buffer[count++] = digit + '0';
 				num %= divisor;
 				divisor /= 10;
 			}
 		}
 		else
+		{
 			buffer[count++] = *format;
 			format++;
+		}
 	}
 	buffer[count] = '\0';
 	return (count);
