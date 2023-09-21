@@ -73,10 +73,8 @@ int _sprintf(char *buffer, const char *format, int num)
 			}
 		}
 		else
-		{
 			buffer[count++] = *format;
 			format++;
-		}
 	}
 	buffer[count] = '\0';
 	return (count);
