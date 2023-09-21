@@ -10,9 +10,9 @@ int _printf(const char *format, ...)
 	va_list args;
 	char buffer[20];
 
-	va_start(args, format);
 	if (format == NULL)
 		return (-1);
+	va_start(args, format);
 	while (*format)
 	{
 		if (*format == '%' && format[1])
@@ -30,8 +30,10 @@ int _printf(const char *format, ...)
 			else if (*format == '%')
 				count += _putchar('%');
 			else
+			{
 				count += _putchar('%');
 				count += _putchar(*format);
+			}
 		}
 		else
 		count += _putchar(*format);
