@@ -15,6 +15,7 @@ typedef struct fmt_op
 char *op;
 int (*f)(va_list);
 } fmt_t;
+int _sprintf(char *buffer, const char *format, int num);
 int _printf(const char *format, ...);
 int handle_flags(va_list list, const char **format, int count);
 int handle_field_width(va_list list, const char **format, int count);
@@ -41,6 +42,6 @@ int print_int(va_list list);
 int _putchar(char c);
 int print_ch(va_list list);
 int print_str(va_list list);
-#define FLAG_ZERO_PADDING 1
+#define FLAG_ZERO_PADDint handle_unknown(const char **format);
 #endif
 
