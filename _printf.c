@@ -9,6 +9,7 @@ int _printf(const char *format, ...)
 {
 	int count = 0;
 	va_list args;
+	char buffer[1024];
 
 	if (format == NULL)
 		return (-1);
@@ -22,6 +23,11 @@ int _printf(const char *format, ...)
 				count += _putchar(va_arg(args, int));
 			else if (*format == 's')
 				count += handle_string(va_arg(args, char *));
+			else if (*format == 'i' || *format == 'd')
+			{
+				_sprintf(buffer, "%d", va_arg(args, int));
+				count += handle_string(buffer);
+			}
 			else if (*format == '%')
 				count += _putchar('%');
 			else
