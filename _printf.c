@@ -21,13 +21,17 @@ int _printf(const char *format, ...)
 				count += _putchar(va_arg(args, int));
 			else if (*format == 's')
 				count += handle_string(va_arg(args, char *));
-			else if (*format == '%')
+			else if (*format == '%' && format[1] == '%')
 				count += _putchar('%');
 			else
 			{
 				count += _putchar('%');
 				count += _putchar(*format);
 			}
+		}
+		else if (*format == '%' && format[1] == '\0')
+		{
+			return (-1);
 		}
 		else
 		count += _putchar(*format);

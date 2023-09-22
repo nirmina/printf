@@ -11,8 +11,8 @@ int main(void)
 {
 	int len, len2;
 
-	len = _printf("A char inside a sentence: %c. Did it work?\n", 'F');
-	len2 = printf("A char inside a sentence: %c. Did it work?\n", 'F');
+	len = _printf("%");
+	len2 = printf("%");
 	fflush(stdout);
 	if (len != len2)
 	{
