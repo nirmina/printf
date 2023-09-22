@@ -6,40 +6,20 @@
  */
 int _printf(const char *format, ...)
 {
-	int count = 0;
-	va_list args;
-
-	va_start(args, format);
-	if (format == NULL)
-		return (-1);
-	while (*format)
-	{
-		if (*format == '%' && format[1])
-		{
-			format++;
-			if (*format == 'c')
-			count += _putchar(va_arg(args, int));
-			else if (*format == 's')
-			count += handle_string(va_arg(args, char *));
-			else if (*format == 'i' || *format == 'd')
-			count += handle_int(va_arg(args, int));
-			else if (*format == '%')
-			count += _putchar('%');
-			else
-			{
-			count += _putchar('%');
-			count += _putchar(*format);
-			}
-		}
-		else if (*format == '%' && format[1] != '\0')
-		{
-			count += _putchar('%');
-			break;
-		}
-		else
-		count += _putchar(*format);
-		format++;
-	}
-	va_end(args);
-	return (count);
+int pr_count = 0;
+va_list list;
+fmt_t funs[] = {
+{"c", print_ch},
+{"s", print_str},
+{"%", print_pct},
+{"d", print_int},
+{"i", print_int},
+{NULL, NULL}
+};
+if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+return (-1);
+va_start(list, format);
+pr_count = get_fun(format, list, funs);
+va_end(list);
+return (pr_count);
 }

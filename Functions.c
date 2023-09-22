@@ -10,76 +10,52 @@ int _putchar(char c)
 return (write(1, &c, 1));
 }
 /**
- * handle_string - Print a string
- * @str: String to print
- * Return: Number of characters printed (excluding null byte)
+ * print_ch - Print a character
+ * @list: List of arguments
+ * Return: Number of characters printed
  */
-int handle_string(char *str)
+int print_ch(va_list list)
 {
-	int i = 0;
-
-	if (str == NULL)
-	{
-		str = "(null)";
-	}
-	while (str[i])
-	{
-		_putchar(str[i]);
-		i++;
-	}
-	return (i);
+char c = va_arg(list, int);
+return (_putchar(c));
 }
 /**
- * handle_int - prints integer
- * @num: the integer to be printed
- *
- * Return: the number of characters printed
+ * print_str - Print a string
+ * @list: List of arguments
+ * Return: Number of characters printed
  */
-int handle_int(int num)
+int print_str(va_list list)
 {
+char *str = va_arg(list, char *);
 int count = 0;
-int digit;
-if (num < 0)
+if (str == NULL)
+str = "(null)";
+while (*str)
 {
-_putchar('-');
-count++;
-num = -num;
-}
-if (num == 0)
-{
-_putchar('0');
-count++;
-}
-else
-{
-int rev = 0; /* reverse the num */
-while (num > 0)
-{
-digit = num % 10;
-rev = rev * 10 + digit;
-num /= 10;
-}
-while (rev > 0)
-{
-_putchar(rev % 10 + '0');
-rev /= 10;
-count++;
-}
+count += _putchar(*str);
+str++;
 }
 return (count);
 }
 /**
- * handle_unknown - Handle unknown format specifiers in _printf
- * @format: Pointer to the format string being processed
- * Return: The number of characters printed for the unknown specifier
+ * print_pct - Print a percent symbol
+ * Return: Number of characters printed
  */
-int handle_unknown(const char **format)
+int print_pct(va_list list)
+{
+(void)list;
+return (_putchar('%'));
+}
+/**
+ * print_number - Print a positive integer
+ * @n: Integer to print
+ * Return: Number of characters printed
+ */
+int print_number(int n)
 {
 int count = 0;
-_putchar('%');
-_putchar(**format);
-count += 2;
-(*format)++;
+if (n / 10)
+count += print_number(n / 10);
+count += _putchar((n % 10) + '0');
 return (count);
 }
-
