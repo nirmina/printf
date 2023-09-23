@@ -32,52 +32,43 @@ int handle_string(char *str)
 	return (i);
 }
 /**
- * _sprintf - prints integer
- * @buffer: the stored integer to be printed
- * @format: the format
- * @num: the va_int
- * Return: the number of characters printed
+ * handle_int - prints int
+ * @num: the number to be printed
+ * Return: counts
  */
-int _sprintf(char *buffer, const char *format, int num)
+int handle_int(int num)
 {
 	int count = 0;
-	int temp, digits, divisor, digit, i;
+	int digit;
 
-	while (*format)
+	if (num < 0)
 	{
-		if (*format == '%' && format[1] == 'd')
-		{
-			format++;
-			format++;
-			temp = num;
-			digits = 0;
-			while (temp != 0)
-			{
-				temp /= 10;
-				digits++;
-			}
-			if (num < 0)
-			{
-				buffer[count++] = '-';
-				num = -num;
-			}
-			divisor = 1;
-			for (i = 1; i < digits; i++)
-			{
-				divisor *= 10;
-			}
-			while (divisor > 0)
-			{
-				digit = num / divisor;
-				buffer[count++] = digit + '0';
-				num %= divisor;
-				divisor /= 10;
-			}
-		}
-		else
-			buffer[count++] = *format;
-			format++;
+		_putchar('-');
+		count++;
+		num = -num;
 	}
-	buffer[count] = '\0';
+	if (num == 0)
+	{
+		_putchar('0');
+		count++;
+	}
+	else
+	{
+		int rev = 0;
+
+	while (num > 0)
+	{
+		digit = num % 10;
+		rev = rev * 10 + digit;
+		num /= 10;
+	}
+	while (rev > 0)
+	{
+		_putchar(rev % 10 + '0');
+		count++;
+		rev /= 10;
+	}
+	}
 	return (count);
+	
 }
