@@ -1,61 +1,85 @@
 #include "main.h"
 /**
- * _putchar - Write a character to stdout
+ * _putchar - Writes a character to stdout
  * @c: The character to write
- * Return: On success, 1.
- * On error, -1
+ *
+ * Return: On success, 1. On error, -1 is returned.
  */
 int _putchar(char c)
 {
 return (write(1, &c, 1));
 }
 /**
- * print_ch - Print a character
- * @list: List of arguments
- * Return: Number of characters printed
+ * handle_string - Prints a string to stdout
+ * @str: The string to print
+ *
+ * Return: The number of characters printed
  */
-int print_ch(va_list list)
+int handle_string(char *str)
 {
-char c = va_arg(list, int);
-return (_putchar(c));
-}
-/**
- * print_str - Print a string
- * @list: List of arguments
- * Return: Number of characters printed
- */
-int print_str(va_list list)
-{
-char *str = va_arg(list, char *);
-int count = 0;
+int i = 0;
 if (str == NULL)
+{
 str = "(null)";
-while (*str)
-{
-count += _putchar(*str);
-str++;
 }
-return (count);
+while (str[i])
+{
+_putchar(str[i]);
+i++;
+}
+return (i);
 }
 /**
- * print_pct - Print a percent symbol
- * Return: Number of characters printed
+ * handle_int - prints int
+ * @num: the number to be printed
+ * Return: counts
  */
-int print_pct(va_list list)
-{
-(void)list;
-return (_putchar('%'));
-}
-/**
- * print_number - Print a positive integer
- * @n: Integer to print
- * Return: Number of characters printed
- */
-int print_number(int n)
+int handle_int(int num)
 {
 int count = 0;
-if (n / 10)
-count += print_number(n / 10);
-count += _putchar((n % 10) + '0');
+int digit;
+if (num < 0)
+{
+_putchar('-');
+count++;
+num = -num;
+}
+if (num == 0)
+{
+_putchar('0');
+count++;
+}
+else
+{
+int rev = 0;
+while (num > 0)
+{
+digit = num % 10;
+rev = rev * 10 + digit;
+num /= 10;
+}
+while (rev > 0)
+{
+_putchar(rev % 10 + '0');
+count++;
+rev /= 10;
+}
+}
 return (count);
+}
+/**
+ * _sprintf - formats a string into a buffer
+ * @buffer: the buffer to store the formatted string
+ * @format: the format string
+ * @...: additional arguments for formatting
+ * Return: the number of characters formatted
+ */
+int _sprintf(char *buffer, const char *format, ...)
+{
+va_list args;
+int count;
+va_start(args, format);
+count = vsprintf(buffer, format, args);
+va_end(args);
+return count;
 }

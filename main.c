@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "main.h"
 /**
  * main - Entry point
@@ -9,8 +10,8 @@
 int main(void)
 {
 int len, len2;
-len = _printf("%");
-len2 = printf("%");
+len = _printf("%d", INT_MAX);
+len2 = printf("%d", INT_MAX);
 fflush(stdout);
 if (len != len2)
 {
